@@ -1,6 +1,4 @@
-matplotlib
-numpy
-pandas
 streamlit
-plotly
-streamlit-lottie
+numpy
+matplotlib
+pillow
