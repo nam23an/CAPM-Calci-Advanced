@@ -11,7 +11,11 @@ def file_exists(file_path):
 
 # Function to calculate CAPM with high precision
 def calculate_capm(rf, beta, rm):
-    return round(rf + beta * (rm - rf), 9)
+    return rf + beta * (rm - rf)
+
+# Function to format numbers dynamically
+def format_number(value):
+    return f"{value:.9f}".rstrip('0').rstrip('.') if '.' in f"{value:.9f}" else f"{value:.9f}"
 
 # Function to show Mario GIF
 def show_mario_gif():
@@ -26,15 +30,15 @@ st.title("CAPM Calculator")
 st.markdown("## Capital Asset Pricing Model (CAPM)")
 
 # Input Fields
-rf = st.number_input("Risk-Free Rate (Rf) in %:", min_value=0.0, step=0.1, value=2.0, format="%.9f") / 100
-beta = st.number_input("Beta (β):", min_value=0.0, step=0.1, value=1.0, format="%.9f")
-rm = st.number_input("Expected Market Return (Rm) in %:", min_value=0.0, step=0.1, value=8.0, format="%.9f") / 100
+rf = st.number_input("Risk-Free Rate (Rf) in %:", min_value=0.0, step=0.1, value=2.0) / 100
+beta = st.number_input("Beta (β):", min_value=0.0, step=0.1, value=1.0)
+rm = st.number_input("Expected Market Return (Rm) in %:", min_value=0.0, step=0.1, value=8.0) / 100
 
 if st.button("Calculate CAPM"):
     with st.spinner("Calculating..."):
         time.sleep(2)  # Simulating Processing Time
         expected_return = calculate_capm(rf, beta, rm) * 100
-        st.success(f"Expected Return: {expected_return:.9f}%")
+        st.success(f"Expected Return: {format_number(expected_return)}%")
         
         # Show Mario GIF
         show_mario_gif()
