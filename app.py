@@ -17,8 +17,7 @@ def load_lottie_url(url):
         return None
 
 # Animation URL (Change to any preferred Lottie animation)
-lottie_success = load_lottie_url("https://assets10.lottiefiles.com/packages/lf20_hjmovzsy.json")
-
+lottie_success = load_lottie_url("https://assets4.lottiefiles.com/packages/lf20_jvxwtdtp.json")
 # Sidebar
 st.sidebar.title("📈 CAPM Calculator")
 st.sidebar.markdown("This tool calculates the *Expected Return* using the *Capital Asset Pricing Model (CAPM)*.")
