@@ -4,20 +4,23 @@ import matplotlib.pyplot as plt
 import time
 from PIL import Image
 import base64
+import os
 
-# Function to encode image to base64
-def get_base64_of_image(image_path):
-    with open(image_path, "rb") as img_file:
-        return base64.b64encode(img_file.read()).decode()
+# Function to check if file exists
+def file_exists(file_path):
+    return os.path.exists(file_path)
 
 # Function to calculate CAPM
 def calculate_capm(rf, beta, rm):
     return rf + beta * (rm - rf)
 
-# Load Mario Image
-def show_mario():
-    mario_base64 = get_base64_of_image("mario_thumbs_up.png")
-    return f'<img src="data:image/png;base64,{mario_base64}" width="100" height="100">'
+# Function to show Mario GIF
+def show_mario_gif():
+    gif_path = "mario.gif"
+    if file_exists(gif_path):
+        return f'<img src="{gif_path}" width="120">'
+    else:
+        return ""
 
 # Streamlit UI
 st.title("CAPM Calculator")
@@ -34,8 +37,10 @@ if st.button("Calculate CAPM"):
         expected_return = calculate_capm(rf, beta, rm) * 100
         st.success(f"Expected Return: {expected_return:.2f}%")
         
-        # Show Mario Image
-        st.markdown(show_mario(), unsafe_allow_html=True)
+        # Show Mario GIF if available
+        mario_html = show_mario_gif()
+        if mario_html:
+            st.markdown(mario_html, unsafe_allow_html=True)
 
     # Plot Security Market Line (SML)
     beta_range = np.linspace(0, 2, 100)
@@ -57,3 +62,4 @@ if st.button("Calculate CAPM"):
 # Syndicate 16 Signature
 st.markdown("---")
 st.markdown("### Prepared by - Syndicate 16")
+
