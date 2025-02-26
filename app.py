@@ -18,9 +18,9 @@ def calculate_capm(rf, beta, rm):
 def show_mario_gif():
     gif_path = "mario.gif"
     if file_exists(gif_path):
-        return f'<img src="{gif_path}" width="120">'
+        st.image(gif_path, width=120)
     else:
-        return ""
+        st.warning("Mario GIF not found!")
 
 # Streamlit UI
 st.title("CAPM Calculator")
@@ -36,9 +36,9 @@ if st.button("Calculate CAPM"):
         time.sleep(2)  # Simulating Processing Time
         expected_return = calculate_capm(rf, beta, rm) * 100
         st.success(f"Expected Return: {expected_return:.2f}%")
-        
-        # Show Mario GIF if available
-        mario_html = show_mario_gif()
+
+        # Show Mario GIF
+        show_mario_gif()
         if mario_html:
             st.markdown(mario_html, unsafe_allow_html=True)
 
