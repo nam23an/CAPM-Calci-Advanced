@@ -3,7 +3,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import time
 from PIL import Image
-import base64
 import os
 
 # Function to check if file exists
@@ -36,11 +35,9 @@ if st.button("Calculate CAPM"):
         time.sleep(2)  # Simulating Processing Time
         expected_return = calculate_capm(rf, beta, rm) * 100
         st.success(f"Expected Return: {expected_return:.2f}%")
-
+        
         # Show Mario GIF
         show_mario_gif()
-        if mario_html:
-            st.markdown(mario_html, unsafe_allow_html=True)
 
     # Plot Security Market Line (SML)
     beta_range = np.linspace(0, 2, 100)
@@ -62,4 +59,3 @@ if st.button("Calculate CAPM"):
 # Syndicate 16 Signature
 st.markdown("---")
 st.markdown("### Prepared by - Syndicate 16")
-
